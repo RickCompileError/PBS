@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main(){
+void solution(){
     int mxlen = 0;
     string s;
     vector<string> v;
@@ -20,4 +20,21 @@ int main(){
         ans.push_back(s1);
     }
     for (int i=0;i<ans.size();i++) cout <<ans[i] <<endl;
+}
+
+void another(){
+    int n = 0, mxlen = 0;
+    string str[100];
+    while (getline(cin,str[n],'\n')) mxlen = max(mxlen,(int)str[n].size()), n++;
+    for (int i=0;i<mxlen;i++){
+        for (int j=n-1;j>=0;j--){
+            if (str[j].size()<=i) cout <<' ';
+            else cout <<str[j][i];
+        }
+        cout <<endl;
+    }
+}
+
+int main(){
+    solution();
 }
