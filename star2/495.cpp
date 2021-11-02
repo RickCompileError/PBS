@@ -2,6 +2,7 @@
 
 using namespace std;
 
+/************************* solution 1 *************************/
 int bound=1e4;
 vector<vector<int>> fib;
 
@@ -29,11 +30,43 @@ void build(){
     for (int i=2;i<=5000;i++) add(i);
 }
 
-int main(){
+void solution1(){
     build();
     int n;
     while (cin >>n){
         cout <<"The Fibonacci number for " <<n <<" is ";
         print(fib[n]);
     }
+}
+/************************* solution 1 *************************/
+
+/************************* solution 2 *************************/
+const int base = 1e5;
+int Fib[5001][2000]{{0},{1}};
+
+void solution2(){
+	int n;
+	for (int i=2;i<=5000;i++){
+		for (int j=0;j<2000;j++){
+			Fib[i][j] += Fib[i-1][j] + Fib[i-2][j];
+			Fib[i][j+1] = Fib[i][j] / base;
+			Fib[i][j] %= base;
+		}
+	}
+	while (cin >>n){
+		printf("The Fibonacci number for %d is ",n);
+		int pos;
+		for (pos=1999;pos>=0;pos--) if (Fib[n][pos]) break;
+		if (pos==-1) cout <<0;
+		else{
+			cout <<Fib[n][pos--];
+			for (;pos>=0;pos--) printf("%05d",Fib[n][pos]);
+		}
+		cout <<endl;
+	}
+}
+/************************* solution 2 *************************/
+
+int main(){
+    solution2();
 }
