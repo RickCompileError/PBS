@@ -12,7 +12,7 @@ void print(){
 }
 
 void build(){
-    fct[0].push_back(0);
+    fct[0].push_back(1);
     fct[1].push_back(1);
     for (int i=2;i<=1000;i++){
         int carry = 0, mul;
@@ -33,6 +33,10 @@ int main(){
     // print();
     int n;
     while (cin >>n){
+        if (n<0){
+            cout <<(n==-1?-1:0) <<endl;
+            continue;
+        }
         int ans = 0;
         for (int i: fct[n]) ans += i;
         cout <<ans <<endl;
