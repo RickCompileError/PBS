@@ -20,9 +20,9 @@ int main(){
     build();
     int a,b;
     while (cin >>a >>b){
-        float count = 0;
+        double count = 0;
         for (int i=a;i<=b;i++) count += func[i];
-        float ans = round(count/(b-a+1)*10000)/100;
-        printf("%.2f\n",ans);
+        double ans = count/(b-a+1)*100+1e-8;
+        printf("%.2lf\n",ans);
     }
 }
