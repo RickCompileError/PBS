@@ -7,7 +7,6 @@ const int mxN = 15;
 int main(){
     int t;
     scanf("%d",&t);
-    int tuple[mxN];
     while (t--){
         int n;
         int tuple[mxN];
@@ -26,4 +25,5 @@ int main(){
         }
         printf("%s\n",(allzero?"ZERO":"LOOP"));
     }
+    return 0;
 }
