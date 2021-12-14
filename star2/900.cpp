@@ -6,9 +6,9 @@ using namespace std;
 
 int main(){
     int n;
-    ll ans[51]{0,1,2};
+    ll ans[51]{0,1,2}; 
+    for (int i=3;i<51;i++) ans[i] = ans[i-1] + ans[i-2];
     while (cin >>n && n!=0){
-        for (int i=3;i<51;i++) ans[i] = ans[i-1] + ans[i-2];
         cout <<ans[n] <<endl;
     }
 }
