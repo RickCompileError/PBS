@@ -5,7 +5,7 @@ using namespace std;
 const int prime = 131071;
 vector<int> num;
 
-int main(){
+void solution1(){
     string str;
     while (cin >>str){
         num.clear();
@@ -22,4 +22,29 @@ int main(){
         }
         cout <<(result?"NO":"YES") <<endl;
     }
+}
+
+void solution2(){
+    string str;
+    while (cin >>str){
+        num.clear();
+        bool end = false;
+        do{
+            for (int i=0;i<str.size() && !end;i++){
+                if (str[i]!='#') num.push_back(str[i]-'0');
+                else end = true;
+            }
+        } while (!end && cin >>str);
+        int result = 0;
+        for (int i=0;i<num.size();i++){
+            result <<= 1;
+            result += num[i];
+            result %= prime;
+        }
+        cout <<(result?"NO":"YES") <<endl;
+    }
+}
+
+int main(){
+    solution2();
 }
