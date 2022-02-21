@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 
-#define elephant array<int,3>
+#define elephant array<int,3> // 0 for id, 1 for weight, 2 for IQ
 
 using namespace std;
-
-const int mx=1e3+5;
 
 bool cmp(elephant a, elephant b){
     return (a[1]<b[1]) || (a[1]==b[1] && a[2]>b[2]);
 }
 
-int main(){
+void solution1(){
     vector<elephant> v;
     int id = 1, w, s;
     while (cin >>w >>s) v.push_back({id++,w,s});
@@ -34,4 +32,40 @@ int main(){
         cout <<v[mxa][0] <<endl;
         mxa = ans[mxa].second;
     } while (mxa!=-1);
+}
+
+void dfs(vector<elephant>& ve, vector<int>& vi, int ind){
+    if (vi[ind]!=-1) dfs(ve,vi,vi[ind]);
+    cout <<ve[ind][0] <<endl;
+}
+
+void solution2(){
+    vector<elephant> v;
+    int id = 1, w, s;
+    while (cin >>w >>s) v.push_back({id++,w,s});
+    sort(v.begin(),v.end(),cmp);
+    vector<int> len(v.size(),1);
+    vector<int> pre(v.size(),-1);
+    int max_length = 0;
+    int max_index = -1;
+    for (int i=0;i<v.size();i++){
+        for (int j=i+1;j<v.size();j++){
+            if (v[i][1]<v[j][1] && v[i][2]>v[j][2]){
+                if (len[i]+1>len[j]){
+                    len[j] = len[i] + 1;
+                    pre[j] = i;
+                }
+            }
+        }
+        if (len[i]>max_length){
+            max_length = len[i];
+            max_index = i;
+        }
+    }
+    cout <<max_length <<endl;
+    dfs(v,pre,max_index);
+}
+
+int main(){
+    solution2();
 }
