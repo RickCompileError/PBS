@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main(){
+void solution1(){
     int n, k, start = 1, ans = 0;
     map<int,int> m;
     cin >>n;
@@ -17,4 +17,25 @@ int main(){
         ans = max(ans,i-start+1);
     }
     cout <<ans <<endl;
+}
+
+void solution2(){
+    int n, k, ans = 0;
+    set<int> s;
+    queue<int> q;
+    cin >>n;
+    while (n--){
+        cin >>k;
+        if (s.find(k)==s.end()) s.insert(k), q.push(k);
+        else{
+            while (q.front()!=k) s.erase(q.front()), q.pop();
+            q.pop(), q.push(k);
+        }
+        ans = max(ans,(int)q.size());
+    }
+    cout <<ans <<endl;
+}
+
+int main(){
+    solution2();
 }
