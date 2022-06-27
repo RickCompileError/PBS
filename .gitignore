@@ -1,3 +1,6 @@
 # Compiled class file
 *.exe
 *.txt
+Contest/
+*.json
+test.*
