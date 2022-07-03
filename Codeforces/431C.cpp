@@ -6,7 +6,28 @@ using namespace std;
 
 const int mod = 1e9+7;
 
-int main(){
+void method2(){
+    int n, k, d;
+    cin >>n >>k >>d;
+    ll s[n+1][2];
+    memset(s, 0, sizeof(s));
+    s[0][0] = 1;
+    for (int i=1;i<=n;i++){
+        for (int j=1;j<=i&&j<=k;j++){
+            if (j>=d){
+                s[i][1] += s[i-j][0] + s[i-j][1];
+            }else{
+                s[i][0] += s[i-j][0];
+                s[i][1] += s[i-j][1];
+            }
+            s[i][0] %= mod;
+            s[i][1] %= mod;
+        }
+    }
+    cout <<s[n][1] <<endl;
+}
+
+void method1(){
     // k-tree, total weight n, at least one edge of weight at least d
     int n, k, d;
     cin >>n >>k >>d;
@@ -28,4 +49,8 @@ int main(){
         ans[i] %= mod;
     }
     cout <<ans[n] <<endl;
+}
+
+int main(){
+    method2();
 }
