@@ -1,10 +1,12 @@
 #include <bits/stdc++.h>
 
+#define ll long long
+
 using namespace std;
 
 const int mxN = 4e3+5;
 vector<int> node[mxN];
-int tot[mxN];
+ll tot[mxN];
 string color;
 
 void dfs(int cur=1){
