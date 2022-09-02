@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+#define ll long long
+#define INF 0x3f3f3f3f
+#define pi pair<int,int>
+#define pll pair<ll,ll>
+#define e1 first
+#define e2 second
+#define vi vector<int>
+#define vl vector<ll>
+#define vs vector<string>
+#define pb push_back
+#define rep(i, l, r) for (int i=l;i<=r;i++)
+#define repn(i, l, r) for (int i=l;i<r;i++)
+
+using namespace std;
+
+void solve(){
+    int n; cin >>n;
+    int a[n], b[n];
+    bool legal{1};
+    for (int i=0;i<n;i++) cin >>a[i];
+    for (int i=0;i<n;i++) cin >>b[i];
+    for (int i=0;i<n;i++){
+        if (a[i]>b[i]) legal = false;
+        if (a[i]!=b[i] && b[(i+1)%n]+1<b[i]) legal = false;
+    }
+    cout <<(legal?"YES":"NO") <<endl;
+}
+
+int main(){
+    int t;
+    cin >>t;
+    // t = 1;
+    while (t--) solve();
+}
