@@ -54,6 +54,33 @@ void solution2(){
     }
 }
 
+// Simplify
+const int mxn = 62510;
+int step[mxn], number[mxn], sdp[mxn];
+void simplify(){
+    int t;
+    cin >>t;
+    for (int cs=1;cs<=t;cs++){
+        printf("Case %d: ", cs);
+        int n, p, q;
+        cin >>n >>p >>q;
+        memset(number, 0, sizeof(number));
+        int s;
+        for (int i=1;i<=p+1;i++){
+            cin >>s;
+            number[s] = i;
+        }
+        n = 0;
+        for (int i=0;i<=q;i++){
+            cin >>s;
+            if (number[s]) step[n++] = number[s];
+        }
+        memset(sdp, INF, sizeof(sdp));
+        for (int i=0;i<n;i++) *lower_bound(sdp, sdp+n, step[i]) = step[i];
+        cout <<int(lower_bound(sdp, sdp+n, INF) - sdp) <<endl;
+    }
+}
+
 int main(){
-    solution2();
+    simplify();
 }
