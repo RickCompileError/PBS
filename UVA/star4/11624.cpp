@@ -88,6 +88,7 @@ Place pj, pf;
 queue<Place> qp;
 
 void dfs(){
+    while (!qp.empty()) qp.pop();
     for (int i=1;i<=r;i++){
         for (int j=1;j<=c;j++){
             if (m[i][j]=='F'){
@@ -131,7 +132,7 @@ void dfs(){
             }
         }
     }
-    cout <<"IMPOSSIBLE";
+    cout <<"IMPOSSIBLE" <<endl;
 }
 
 // more simplify
