@@ -1,4 +1,4 @@
-// Time: O(n), Space: O(1)
+// Time: O(n), Space: O(n)
 // No stack version
 class Solution {
 public:
@@ -35,7 +35,7 @@ public:
         return ans;
     }
 };
-// Time: O(n), Space: O(1)
+// Time: O(n), Space: O(n)
 // Stack version
 class Solution {
 public:
