@@ -36,3 +36,55 @@ public:
     }
 };
 
+// DSU version, Time: O(V + (E*a(V))), Space: O(V), a() is used for amortized complexity
+class DSU {
+private:
+    vector<int> parents;
+    vector<int> ranks;
+
+public:
+    DSU(int n) {
+        parents.resize(n);
+        ranks.resize(n, 1);
+        for (int i = 0; i < n; i++) {
+            parents[i] = i;
+        }
+    }
+
+    int find(int n) {
+        return n == parents[n] ? n : (parents[n] = find(parents[n]));
+    }
+
+    bool merge(int a, int b) {
+        int pa = find(a);
+        int pb = find(b);
+        if (pa == pb) {
+            return false;
+        }
+
+        if (ranks[pb] > ranks[pa]) {
+            swap(pa, pb);
+        }
+
+        parents[pb] = pa;
+        ranks[pa] += ranks[pb];
+        return true;
+    }
+};
+
+class Solution {
+public:
+    int countComponents(int n, vector<vector<int>>& edges) {
+        DSU dsu(n);
+
+        int roots = n;
+        for (auto& edge: edges) {
+            if (merge(edge[0], edge[1])) {
+                roots--;
+            }
+        }
+
+        return roots;
+    }
+};
+
