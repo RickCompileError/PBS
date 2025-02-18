@@ -1,3 +1,4 @@
+// Time: O(N), Space: O(N)
 class Solution {
 public:
     int climbStairs(int n) {
