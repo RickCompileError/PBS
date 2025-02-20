@@ -51,7 +51,7 @@ private:
         vector<int> radius(sz, 0);
 
         for (int i = 0; i < sz; i++) {
-            radius[i] = i < r ? max(r - i, radius[l + (r - i)]) : 0;
+            radius[i] = i < r ? min(r - i, radius[l + (r - i)]) : 0;
             while (i - radius[i] - 1 >= 0 && i + radius[i] + 1 < sz &&
                 (ds[i - radius[i] - 1] == ds[i + radius[i] + 1])) {
                 radius[i]++;
