@@ -32,6 +32,9 @@ public:
 };
 
 // Shortest Path Faster, Time: O(n * k), Space: O(n + m)
+// This solution is the variant of Bellman Ford
+// The reason cannot use PQ is because not the shortest path first can absolutely get the answer
+// To make the PQ possible, we need to make a stop array
 #define INF 0x3f3f3f3f
 #define PQ priority_queue
 
