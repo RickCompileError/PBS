@@ -26,3 +26,45 @@ public:
 };
 
 // There is an optimize version is only set 0 on col and row [0] first
+// Time: O(mn), Space: O(1)
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int ROW = matrix.size();
+        int COL = matrix[0].size();
+        bool rZero = false, cZero = false;
+
+        for (int r = 0; r < ROW; r++) {
+            for (int c = 0; c < COL; c++) {
+                if (r == 0 && matrix[r][c] == 0) {
+                    rZero = true;
+                }
+                if (c == 0 && matrix[r][c] == 0) {
+                    cZero = true;
+                }
+                if (r > 0 && c > 0 && matrix[r][c] == 0) {
+                    matrix[0][c] = 0;
+                    matrix[r][0] = 0;
+                }
+            }
+        }
+
+        for (int r = 1; r < ROW; r++) {
+            for (int c = 1; c < COL; c++) {
+                if (matrix[r][0] == 0 || matrix[0][c] == 0) {
+                    matrix[r][c] = 0;
+                }
+            }
+        }
+        if (rZero) {
+            for (int c = 0; c < COL; c++) {
+                matrix[0][c] = 0;
+            }
+        }
+        if (cZero) {
+            for (int r = 0; r < ROW; r++) {
+                matrix[r][0] = 0;
+            }
+        }
+    }
+};
